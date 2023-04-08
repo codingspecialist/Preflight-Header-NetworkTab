@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <button onclick="v1()">v1 요청</button>
+
+    <script>
+        function v1(){
+            fetch('http://localhost:8000/v1', {
+                method: 'OPTIONS',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer abcdefg'
+                }
+            })
+                .then(response => {
+                    // 응답 확인
+                    if (response.ok) {
+                        console.log('Preflight Request 성공');
+                    } else {
+                        console.error('Preflight Request 실패');
+                    }
+                })
+                .catch(error => {
+                    console.error('Preflight Request 실패: ' + error.message);
+                });
+        }
+    </script>
+</body>
+</html>
